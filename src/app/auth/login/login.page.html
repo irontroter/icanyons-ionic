@@ -1,0 +1,61 @@
+<!-- <ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Log In</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="no-padding">
+    <div class="main">
+        <ion-card class="no-margin">
+            <ion-card-content>
+                <ion-row class="row">
+                    <div class="fire-logo">
+                        <img src="assets/custom-ion-icons/logo9.png" class="img-logo">
+                        <ion-text>
+                            <h2 class="ion-text-center no-margin margin-vertical">Welcome to iCanyons</h2>
+                        </ion-text>
+                    </div>
+                </ion-row>
+
+                <form class="form" [formGroup]="validationsForm" (ngSubmit)="tryLogin(validationsForm.value)">
+                    <ion-item>
+                        <ion-label position="floating" color="primary">Email</ion-label>
+                        <ion-input type="text" formControlName="email"></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.email">
+                            <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <ion-item>
+                        <ion-label position="floating" color="primary">Password</ion-label>
+                        <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.password">
+                            <div class="error-message" *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validationsForm.valid">Log In</ion-button>
+                    <label class="error-message">{{errorMessage}}</label>
+                </form>
+                <!-- <ion-text class="block ion-text-center">Don't have an account yet ?
+                    <span class="bold"> <a (click)="goRegisterPage()">Sign up here</a></span></ion-text> -->
+                <ion-text color="primary" class="block ion-text-center" routerLink="/forgot">Forgot Password?</ion-text>
+
+                <p class="go-to-register ion-text-center">
+                    No account yet? <a (click)="goRegisterPage()">Create an account.</a>
+                </p>
+
+
+                <ion-button color="secondary" class="ion-btn" (click)="goProba()">currentUserAuth Firebase</ion-button>
+                <ion-button color="tertiary" class="ion-btn" (click)="getUsersLocalStorage()">userAuth & user LocalStorage</ion-button>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+</ion-content>

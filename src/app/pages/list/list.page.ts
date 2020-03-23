@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
+
   private selectedItem: any;
   private icons = [
     'flask',
@@ -21,6 +22,7 @@ export class ListPage implements OnInit {
   ];
   public items: Array<{ title: string; note: string; icon: string }> = [];
   constructor() {
+    console.log('list.page: ');
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,

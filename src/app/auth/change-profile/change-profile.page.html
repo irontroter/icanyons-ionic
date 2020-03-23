@@ -1,0 +1,79 @@
+<app-header [backButton]="true" [returnButton]="true" (clickSubmite)="tryEditProfile( $event, validationsForm.valid, validationsForm.value)">
+</app-header>
+
+<ion-content class="ion-padding">
+
+
+    <ion-avatar class="avatar-center">
+        <img *ngIf="!profileUrl" src="../../../assets/custom-ion-icons/md-logo.svg">
+        <img *ngIf="profileUrl" [src]="profileUrl">
+
+    </ion-avatar>
+
+    <ion-item lines="none" class="photo-center">
+        <ion-button shape="round" class="photo-center" fill="clear" color="medium" (click)="takePicture()">
+            <ion-icon slot="icon-only" size="large" name="camera"></ion-icon>
+        </ion-button>
+    </ion-item>
+
+    <form class="form" *ngIf="userProfile | async; let item" [formGroup]="validationsForm">
+        <ion-item>
+            <ion-label position="floating" color="primary">Username</ion-label>
+            <ion-input formControlName="displayName" type="text"></ion-input>
+        </ion-item>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.displayName">
+                <div class="error-message" *ngIf="validationsForm.get('displayName').hasError(validation.type) && (validationsForm.get('displayName').dirty || validationsForm.get('displayName').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <ion-item>
+            <ion-label position="floating" color="primary">email</ion-label>
+            <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.email">
+                <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <ion-item>
+            <ion-label position="floating" color="primary">Location</ion-label>
+            <ion-input formControlName="location" type="text"></ion-input>
+        </ion-item>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.location">
+                <div class="error-message" *ngIf="validationsForm.get('location').hasError(validation.type) && (validationsForm.get('location').dirty || validationsForm.get('location').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <ion-item>
+            <ion-label position="floating" color="primary">Bio</ion-label>
+            <ion-textarea formControlName="bio" type="text"></ion-textarea>
+        </ion-item>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.bio">
+                <div class="error-message" *ngIf="validationsForm.get('bio').hasError(validation.type) && (validationsForm.get('bio').dirty || validationsForm.get('bio').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <ion-list>
+            <ion-list-header>
+                <ion-label color="primary">
+                    <h2>
+                        Favorites canyons:
+                    </h2>
+                </ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let canyon of user.canyonsFav; let i=index">
+                <ion-label color="medium">{{canyon.name}}</ion-label>
+                <ion-icon color="medium" slot="end" name="star"></ion-icon>
+            </ion-item>
+        </ion-list>
+    </form>
+
+</ion-content>

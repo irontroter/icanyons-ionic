@@ -1,5 +1,7 @@
 {
   "name": "icanyons3",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

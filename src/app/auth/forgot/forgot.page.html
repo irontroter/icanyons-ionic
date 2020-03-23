@@ -1,0 +1,30 @@
+<ion-content class="no-padding main">
+
+    <ion-card class="no-margin">
+        <ion-card-content>
+            <div class="fire-logo">
+                <img src="assets/custom-ion-icons/logo9.png" class="img-logo">
+                <ion-text>
+                    <h2 class="no-margin margin-vertical text-center">Forgot your Password ?</h2>
+                </ion-text>
+            </div>
+
+            <form class="form" [formGroup]="validationsForm" (ngSubmit)="tryRecover(validationsForm.value)">
+                <ion-item>
+                    <ion-label position="floating" color="primary">Email</ion-label>
+                    <ion-input type="text" formControlName="email"></ion-input>
+                </ion-item>
+                <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validationMessages.email">
+                        <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </div>
+                <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validationsForm.valid">Send mail</ion-button>
+                <label class="error-message">{{ errorMessage }}</label>
+            </form>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

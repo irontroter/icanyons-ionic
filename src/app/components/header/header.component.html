@@ -1,0 +1,13 @@
+<ion-header no-border translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button *ngIf="!backButton"></ion-menu-button>
+            <ion-back-button *ngIf="backButton" mode="ios" color="primary" text="" defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title>iCanyons</ion-title>
+        <ion-button class="paddingTo0" *ngIf="returnButton" shape="round" fill="outline" slot="end" (click)="onClick()">
+            <ion-icon slot="icon-only" size="large" name="checkmark"></ion-icon>
+        </ion-button>
+
+    </ion-toolbar>
+</ion-header>

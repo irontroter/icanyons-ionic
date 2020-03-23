@@ -1,0 +1,83 @@
+<app-header [backButton]="true">
+</app-header>
+
+<ion-content class="ion-padding" *ngIf="userProfile">
+
+
+    <ion-avatar class="avatar-center">
+        <img *ngIf="!userProfile.photoURL" src="../../../assets/custom-ion-icons/md-logo.svg">
+        <img *ngIf="userProfile.photoURL" [src]="userProfile.photoURL">
+    </ion-avatar>
+
+    <ion-item>
+        <ion-label class="text-wrap">
+            <ion-text color="primary">
+                <h3>{{userProfile.displayName}}</h3>
+            </ion-text>
+            <p *ngIf="isMyProfile">{{userProfile.email}}</p>
+        </ion-label>
+        <ion-button routerLinkActive="active" [routerLink]="[ '/change-profile', uidProfile ]" *ngIf="isMyProfile" shape="round" fill="outline" color="medium" slot="end">
+            Edit profile
+        </ion-button>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            <ion-text color="primary">
+                <h3>Location</h3>
+            </ion-text>
+            <p>{{ userProfile.location }}</p>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            <ion-text color="primary">
+                <h3>Biography</h3>
+            </ion-text>
+            <p>{{ userProfile.bio }}</p>
+        </ion-label>
+    </ion-item>
+
+    <!-- <ion-list-header color="medium">
+        Update Profile
+    </ion-list-header>
+    <ion-item>
+        <ion-label position="fixed">Username</ion-label>
+        <ion-input type="string" placeholder="Enter new" [(ngModel)]="value.displayName"></ion-input>
+        <ion-button slot="end" color="success" expand="full" (click)="tryUpdateUsername()">Update</ion-button>
+    </ion-item>
+    <ion-item>
+        <ion-label position="fixed">Image</ion-label>
+
+        <ion-button slot="end" color="success" type="file" (click)="tryUploadFile($event)">
+            <ion-icon name="camera"></ion-icon>Càmara
+        </ion-button>
+        <ion-button slot="end" color="success" type="file" (click)="tryUploadFile($event)">
+            <ion-icon name="camera"></ion-icon>Galeria
+        </ion-button>
+
+    </ion-item>
+    <ion-list-header color="medium">
+        Sensitive Updates
+    </ion-list-header>
+    <ion-item>
+        <ion-label position="fixed">Email</ion-label>
+        <ion-input type="string" placeholder="Enter new" [(ngModel)]="value.email"></ion-input>
+        <ion-button slot="end" color="success" expand="full" (click)="tryUpdateEmail()">Update</ion-button>
+    </ion-item>
+    <ion-item>
+        <ion-label position="fixed">Password</ion-label>
+        <ion-input type="string" placeholder="Enter new" [(ngModel)]="value.password"></ion-input>
+        <ion-button slot="end" color="success" expand="full" (click)="tryUpdatePassword()">Update</ion-button>
+    </ion-item>
+    <ion-row>
+        <ion-col>
+            <ion-text class="error text-center">{{error}}</ion-text>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <ion-text class="error text-center">{{ linkError }}</ion-text>
+        </ion-col>
+    </ion-row> -->
+</ion-content>

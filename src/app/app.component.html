@@ -1,24 +1,33 @@
 <ion-app>
-  <ion-split-pane>
-    <ion-menu type="overlay">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet main></ion-router-outlet>
-  </ion-split-pane>
+    <ion-split-pane>
+        <ion-menu menuId="first" type="overlay" (ionWillOpen)="charge()">
+            <ion-header *ngIf="user" class="margin" no-border>
+                <ion-avatar>
+                    <img *ngIf="!user.photoURL" src="../../../assets/custom-ion-icons/md-logo.svg">
+                    <img *ngIf="user.photoURL" [src]="user.photoURL">
+                </ion-avatar>
+                <ion-toolbar>
+                    <p>{{ user.displayName }}</p>
+                    <p>{{ user.email }}</p>
+
+                    <ion-icon slot="end" name="log-out" (click)="tryLogout()"></ion-icon>
+
+
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <ion-list>
+                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+                        <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                            <ion-label>
+                                {{p.title}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet main></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>
